@@ -1,5 +1,5 @@
 import sys
-sys.path.append("PATH\\AQUI\\")#gambiarra = forçando chamar o módulo
+sys.path.append("C:\\Users\\dsadm\\Desktop\\Nova pasta (2)\\desafio_clebinho_versao_final\desafio\\")#gambiarra = forçando chamar o módulo
 import forca_facil
 import desafio1_medio
 import desafio1_dificil
