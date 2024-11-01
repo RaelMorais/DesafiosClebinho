@@ -6,7 +6,7 @@ import api_user_key_class as api
 class gemini_app:
     def __init__(self):
         self.a = ""
-    def gemini(self):
+    def gemini_app_api(self):
         def to_markdown(text):
             text = text.replace("•", "  *")
             return textwrap.indent(text, "> ", predicate=lambda _: True)
