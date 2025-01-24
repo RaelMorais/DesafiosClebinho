@@ -1,10 +1,92 @@
 import random
-import printes_home 
-
-class desafio_dificil:
+import printes_home
+class Adivinhacao:
     def __init__(self):
-        self.a = ""
+        self.a =""
+        
+    def jogo_adivinhacao_facil(self):
+        std = '''
+        +++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        +                                                     +   
+        +                JOGO DA ADIVINHAÇÃO                  +
+        +                                                     +
+        +    VC POSSUI 5 CHANCES, 100 DE VIDA E UM SONHO!     +
+        +++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        '''
+        print(std)
+        #erro na hora de importar random, random tava importando dois valores por estar duplicada, então rodava mas depois ocorria erro
+        num = random.randint(1, 101) 
+        vida = 100 
+        chances = 0
+        
+        while True:
+            try:
+                chute = int(input("Acerte o número: "))  
+                chances += 1
+                
+                if chute == num:
+                    print("Parabéns, você acertou!")
+                    break  # sai do loop se o jogador acertar
+                
+                
+                if chute < num: # atualiza a vida do jogador
+                    vida -= (num - chute)
+                    print(f"Você errou! O número é maior. \nVida Atual = {vida} \nRodada = {chances}")
+                else:
+                    vida -= (chute - num)
+                    print(f"Você errou! O número é menor. \nVida Atual = {vida} \nRodada = {chances}")
+                
+                # verifica se o jogador perdeu todas as chances ou vida
+                if chances == 5 or vida <= 0:
+                    print("Você perdeu! O número era:", num)
+                    break
+            
+            except ValueError:
+                print("Erro: Insira um número válido.")  # Mensagem de erro se a entrada não for um número
+    def jogo_adivinhacao_medio(self):
+        vida = 100
+        chances = 0
+        num = random.randint(1, 101)
+        nomeJogador = input("Qual o seu nome? ")
+        
+# erro antigo: chance tava duplicada então chamava duas vezes
+# entao quando o jogador tentava um número acrescentava mais 2 chances 
+# logica do if estava "se o jogador ou o jogador for manor uq eo num soma"
+        while True:
+            try:
+                chute = int(input("Acerte o número: ")) 
+                chances += 1
+                
+                if chute == num:
+                    print("Parabéns, você acertou!")
+                    break  
+                if chute < num:
+                    vida -= (num - chute)
+                    print(f"Você errou! O número é maior. \nVida Atual = {vida} \nRodada = {chances}")
+                else:
+                    vida -= (chute - num)
+                    print(f"Você errou! O número é menor. \nVida Atual = {vida} \nRodada = {chances}")
+                
+                if chances == 5 or vida <= 0:
+                    print("Você perdeu! O número era:", num)
+                    break
+            
+            except ValueError:
+                print("Erro: Insira um número válido.")  
 
+        
+        with open('ranking.txt', 'a') as r:
+            if vida < 0:
+                r.write(f'{nomeJogador} é tão ruim que não consigo marcar a pontuação\n')
+            else:
+                r.write(f'{nomeJogador} fez {vida} pontos\n')
+                
+        with open('ranking.txt', 'r') as r:
+            ranking = r.readlines()
+        
+        print("Ranking dos jogadores:")  # RANKING JOGADORES
+        for i, linha in enumerate(ranking, start=1):
+            print(f"{i}. {linha.strip()}")
     def jogo_adivinhacao_dificil(self):
         # ordenação no rankin estava errada, ela deve salvar antes de jogar no txt
         #vairvael de numero de jogaodres estava somando por algum motivo, então somava o número do jogador ??
