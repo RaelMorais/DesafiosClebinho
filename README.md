@@ -3,6 +3,7 @@
 <p>1 - Desafio 1 - Adivinhação</p>
 <p>2 - Desafio 2 - Forca</p>
 <p>3 - Desafio 3 - Velha</p>
+<p>4 - Desafio 4 - Black Jack</p>
 
 ```
 git clone https://github.com/RaelMorais/desafio_clebinho_versao_final.git
